@@ -1,6 +1,6 @@
 # Transaction-Type
 
-Block Account
+### Block Account
 ```
 POST: /api/v1/savingsaccounts/{account_id}/transactions?command=holdAmount
 ```
@@ -28,7 +28,7 @@ Response
 }
 ```
 
-Unblobk Account(Reversal)
+### Unblobk Account(Reversal)
 ```
 /api/v1/savingsaccounts/{account_id}/transactions/{resourceId}?command=releaseAmount
 ```
