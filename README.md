@@ -4,8 +4,8 @@
 ```
 POST: /api/v1/savingsaccounts/{account_id}/transactions?command=holdAmount
 ```
+#### Request
 ```
-Request
 {
 	"transactionDate":"25 May 2019",
 	"transactionAmount": 2000,
@@ -15,8 +15,8 @@ Request
 	"currency": 599
 }
 ```
+#### Response
 ```
-Response
 
 {
 	"officeId": 1,
@@ -32,16 +32,14 @@ Response
 ```
 /api/v1/savingsaccounts/{account_id}/transactions/{resourceId}?command=releaseAmount
 ```
+#### Request 
 ```
-Request 
 {
 	"block_authorization_id": "6ce86ebe-6287-4572-b525-bc600da108b4"
 }
 ```
-
+#### Response
 ```
-Response
-
 {
 	"officeId": 1,
 	"clientId": 1,
