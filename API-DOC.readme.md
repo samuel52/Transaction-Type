@@ -143,9 +143,29 @@ POST: /api/v1/savingsaccounts/{fineract_client_savings_account_id}/transactions/
 
 ```
 
-
-
-
+### Debit Account From a Blocked Amount
+In the case where the Blocked 5000 NGN was not completely unblocked, Debit 1000 from the Blocked 5000
+```
+POST: /api/v1/savingsaccounts/{fineract_client_savings_account_id}/transactions/{resourceId_of_blocked_amount}?command=debitAccountFromBlockedAmount
+```
+#### Request
+```
+{
+	"locale":"en",
+	"dateFormat":"dd MMMM yyyy",
+	"debit_amount": 1000
+}
+```
+#### Response
+```
+{
+	"officeId": 1,
+	"clientId": 2,
+	"savingsId": 4,
+	"resourceId": 34,
+	"debit_amount": 1000
+}
+```
 
 
 
