@@ -6,7 +6,7 @@ office id is clane office office id, basically means that this transactions are 
 This is the id of the client saved on Fineract - e.g: The client with an id of 1 is the one initiating all the transactions below
 
 #### savingsId
-Savings id is the id of the savings account. ones you have this service in your service, always pass it on the url {account_id} whenever you need to carry out a transaction on that account.
+Savings id is the id of the savings account. ones you have this service in your service, always pass it on the url {fineract_client_savings_account_id} whenever you need to carry out a transaction on that account.
 
 #### resourceId
 Resource id is the id assigned to each transactions or any operation on fineract. 
@@ -37,14 +37,14 @@ body = {
 	"savingsId": 10
 }
 ```
-Take the `clientId` and `savingsId` then store on your service along side other parameters. e.g `fineract_client_id` & `fineract_client_savings_account_id`
+Take the `clientId` and `savingsId` then store on your service along side other parameters. e.g `fineract_client_id` & `fineract_client_savings_fineract_client_savings_account_id`
 - Note: it is advice the fineract process is complete before savings user KYC on your service
 
 
 ### Block Account
 Block a certain amount of money. e.g: Block 5000 NGN
 ```
-POST: /api/v1/savingsaccounts/{account_id}/transactions?command=holdAmount
+POST: /api/v1/savingsaccounts/{fineract_client_savings_account_id}/transactions?command=holdAmount
 ```
 #### Request
 ```
@@ -52,6 +52,7 @@ POST: /api/v1/savingsaccounts/{account_id}/transactions?command=holdAmount
 	"transactionDate":"25 May 2019",
 	"transactionAmount": 5000,
 	"locale":"en",
+	"account_number": "000000004",
 	"dateFormat":"dd MMMM yyyy",
 	"currency": 566
 }
@@ -72,7 +73,7 @@ POST: /api/v1/savingsaccounts/{account_id}/transactions?command=holdAmount
 ### Unblobk Account(Reversal)
 Unblock the complete 5000 NGN
 ```
-POST /api/v1/savingsaccounts/{account_id}/transactions/{resourceId}?command=releaseAmount
+POST /api/v1/savingsaccounts/{fineract_client_savings_account_id}/transactions/{resourceId}?command=releaseAmount
 ```
 #### Request 
 ```
@@ -94,7 +95,7 @@ POST /api/v1/savingsaccounts/{account_id}/transactions/{resourceId}?command=rele
 ### Debit Account From a Blocked Amount
 In the case where the Blocked 5000 NGN was not completely unblocked, Debit 1000 from the Blocked 5000
 ```
-POST: /api/v1/savingsaccounts/{account_id}/transactions?command=debitAccountFromBlockedAmount
+POST: /api/v1/savingsaccounts/{fineract_client_savings_account_id}/transactions?command=debitAccountFromBlockedAmount
 ```
 #### Request
 ```
@@ -118,7 +119,7 @@ POST: /api/v1/savingsaccounts/{account_id}/transactions?command=debitAccountFrom
 ### Reverse Debit From a Blocked Amount (Reversal)
 Revserse the 1000 NGN back to its state - Now the total blocked amount is 5000 NGN
 ```
-POST: /api/v1/savingsaccounts/{account_id}/transactions/{resourceId}?command=reverseDebitAccountFromBlockAmount
+POST: /api/v1/savingsaccounts/{fineract_client_savings_account_id}/transactions/{resourceId}?command=reverseDebitAccountFromBlockAmount
 ```
 #### Request
 ```
@@ -140,7 +141,7 @@ POST: /api/v1/savingsaccounts/{account_id}/transactions/{resourceId}?command=rev
 ### Debit Account (withdraw)
 Debit 2000 NGN from customers account
 ```
-POST: /api/v1/savingsaccounts/{account_id}/transactions?command=debitAccountForTransaction
+POST: /api/v1/savingsaccounts/{fineract_client_savings_account_id}/transactions?command=withdrawal
 ```
 #### Request
 ```
@@ -149,7 +150,6 @@ POST: /api/v1/savingsaccounts/{account_id}/transactions?command=debitAccountForT
 	"dateFormat": "dd MMMM yyyy",
 	"transactionDate": "27 May 2013",
 	"transactionAmount": 2000,
-	"paymentTypeId": "14",
 	"currency": 566
 }
 
@@ -169,7 +169,7 @@ POST: /api/v1/savingsaccounts/{account_id}/transactions?command=debitAccountForT
 ### Reverse Debit Transaction
 Reverse 2000 NGN back to the customers account, it is a credit back to the customer's account
 ```
-POST: /api/v1/savingsaccounts/{account_id}/transactions/{resourceId}?command=reverseDebitAccount
+POST: /api/v1/savingsaccounts/{fineract_client_savings_account_id}/transactions/{resourceId}?command=undo
 ```
 #### Request
 ```
