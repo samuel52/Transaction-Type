@@ -75,7 +75,7 @@ Unblock the complete 5000 NGN
 ```
 POST /api/v1/savingsaccounts/{fineract_client_savings_account_id}/transactions/{resourceId}?command=releaseAmount
 ```
-#### Request 
+#### Request (optional)
 ```
 {
 	"block_authorization_id": "6ce86ebe-6287-4572-b525-bc600da108b4"
@@ -92,52 +92,6 @@ POST /api/v1/savingsaccounts/{fineract_client_savings_account_id}/transactions/{
 }
 ```
 
-### Debit Account From a Blocked Amount
-In the case where the Blocked 5000 NGN was not completely unblocked, Debit 1000 from the Blocked 5000
-```
-POST: /api/v1/savingsaccounts/{fineract_client_savings_account_id}/transactions?command=debitAccountFromBlockedAmount
-```
-#### Request
-```
-{
-	"locale":"en",
-	"dateFormat":"dd MMMM yyyy",
-	"debit_amount": 1000,
-	"block_authorization_id": "6ce86ebe-6287-4572-b525-bc600da108b4"
-}
-```
-#### Response
-```
-{
-	"officeId": 1,
-	"clientId": 2,
-	"savingsId": 4,
-	"resourceId": 34,
-	"debit_amount": 1000
-}
-```
-### Reverse Debit From a Blocked Amount (Reversal)
-Revserse the 1000 NGN back to its state - Now the total blocked amount is 5000 NGN
-```
-POST: /api/v1/savingsaccounts/{fineract_client_savings_account_id}/transactions/{resourceId}?command=reverseDebitAccountFromBlockAmount
-```
-#### Request
-```
-{
-	"block_authorization_id": "816b04d5-bfe4-42cc-bdcd-d09c2c4490b3"
-}
-```
-#### Response
-```
-{
-	"officeId": 1,
-	"clientId": 2,
-	"savingsId": 4,
-	"resourceId": 33,
-	"reversed_amount": 20000
-}
-```
-
 ### Debit Account (withdraw)
 Debit 2000 NGN from customers account
 ```
@@ -150,7 +104,6 @@ POST: /api/v1/savingsaccounts/{fineract_client_savings_account_id}/transactions?
 	"dateFormat": "dd MMMM yyyy",
 	"transactionDate": "27 May 2013",
 	"transactionAmount": 2000,
-	"currency": 566
 }
 
 ```
@@ -171,12 +124,11 @@ Reverse 2000 NGN back to the customers account, it is a credit back to the custo
 ```
 POST: /api/v1/savingsaccounts/{fineract_client_savings_account_id}/transactions/{resourceId}?command=undo
 ```
-#### Request
+#### Request(optional)
 ```
 {
-	"block_authorization_id": "816b04d5-bfe4-42cc-bdcd-d09c2c4490b3"
-}
 
+}
 
 ```
 #### Response
