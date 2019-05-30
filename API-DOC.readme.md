@@ -52,7 +52,6 @@ POST: /api/v1/savingsaccounts/{fineract_client_savings_account_id}/transactions?
 	"transactionDate":"25 May 2019",
 	"transactionAmount": 5000,
 	"locale":"en",
-	"account_number": "000000004",
 	"dateFormat":"dd MMMM yyyy",
 	"currency": 566
 }
@@ -70,7 +69,7 @@ POST: /api/v1/savingsaccounts/{fineract_client_savings_account_id}/transactions?
 }
 ```
 
-### Unblobk Account(Reversal)
+### Unblobk Account All(Reversal)
 Unblock the complete 5000 NGN
 ```
 POST /api/v1/savingsaccounts/{fineract_client_savings_account_id}/transactions/{resourceId}?command=releaseAmount
